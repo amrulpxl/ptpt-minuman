@@ -1,0 +1,642 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #8b4513;
+    --secondary-color: #a0522d;
+    --accent-color: #654321;
+    --text-color: #2c1810;
+    --bg-color: #f5f1e8;
+    --paper-color: #e8ddd4;
+    --border-color: #d4c4a8;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: 'Crimson Text', serif;
+    background: linear-gradient(45deg, var(--bg-color) 0%, var(--paper-color) 50%, var(--border-color) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: var(--text-color);
+    line-height: 1.6;
+    will-change: auto;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(101, 67, 33, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(160, 82, 45, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(248, 244, 235, 0.9);
+    box-shadow: 
+        0 0 20px var(--shadow-color),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    position: relative;
+    contain: layout style;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #8b4513, #a0522d, #8b4513);
+    border-radius: 10px;
+    z-index: -1;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 0;
+    border-bottom: 3px double #8b4513;
+    position: relative;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: #8b4513;
+}
+
+.title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2c1810;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #654321;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.main-content {
+    margin-bottom: 40px;
+}
+
+.expense-form {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 30px;
+    border: 2px solid #8b4513;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #2c1810;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #8b4513;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    color: #2c1810;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #a0522d;
+    box-shadow: 0 0 8px rgba(160, 82, 45, 0.3);
+    background: rgba(255, 255, 255, 1);
+}
+
+.calculate-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #8b4513, #a0522d);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.calculate-btn:hover {
+    background: linear-gradient(135deg, #a0522d, #8b4513);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.calculate-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.results {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border: 2px solid #8b4513;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.results h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #2c1810;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #8b4513;
+    padding-bottom: 10px;
+}
+
+.calculation-table {
+    overflow-x: auto;
+}
+
+.calculation-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #8b4513;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.calculation-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #d4c4a8;
+    font-size: 1.1rem;
+}
+
+.calculation-table td:first-child {
+    font-weight: 600;
+    color: #2c1810;
+    background: rgba(248, 244, 235, 0.5);
+    width: 60%;
+}
+
+.calculation-table td:last-child {
+    text-align: right;
+    font-family: 'Cinzel', serif;
+    color: #8b4513;
+    font-weight: 600;
+}
+
+.calculation-table .total-row td {
+    background: rgba(139, 69, 19, 0.1);
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-top: 2px solid #8b4513;
+}
+
+.calculation-table .per-person-row td {
+    background: rgba(160, 82, 45, 0.15);
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #2c1810;
+    border-top: 2px solid #a0522d;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 2px solid #8b4513;
+    color: #654321;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .expense-form,
+    .results {
+        padding: 20px;
+    }
+    
+    .calculation-table td {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+    
+    .calculation-table .total-row td,
+    .calculation-table .per-person-row td {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .expense-form,
+    .results {
+        padding: 15px;
+    }
+    
+    .calculation-table td {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .calculation-table td:first-child {
+        width: 50%;
+    }
+}
+
+.header-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.header-btn {
+    padding: 8px 16px;
+    background: rgba(139, 69, 19, 0.1);
+    border: 1px solid #8b4513;
+    border-radius: 4px;
+    color: #2c1810;
+    font-family: 'Crimson Text', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header-btn:hover {
+    background: rgba(139, 69, 19, 0.2);
+}
+
+.form-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #8b4513;
+    border-radius: 6px;
+}
+
+.form-section h3 {
+    font-family: 'Cinzel', serif;
+    color: #2c1810;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #8b4513;
+    padding-bottom: 10px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.item-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #d4c4a8;
+    border-radius: 4px;
+}
+
+.add-item-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #a0522d, #8b4513);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-item-btn:hover {
+    background: linear-gradient(135deg, #8b4513, #a0522d);
+}
+
+.remove-item-btn {
+    padding: 8px 12px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.remove-item-btn:hover {
+    background: #c82333;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #654321, #8b4513);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 120px;
+}
+
+.action-btn:hover {
+    background: linear-gradient(135deg, #8b4513, #654321);
+    transform: translateY(-2px);
+}
+
+.charts-container {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.chart-section {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border: 2px solid #8b4513;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.chart-section h3 {
+    font-family: 'Cinzel', serif;
+    color: #2c1810;
+    margin-bottom: 20px;
+}
+
+.settings-panel,
+.history-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(248, 244, 235, 0.95);
+    padding: 30px;
+    border: 3px solid #8b4513;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.settings-panel h3,
+.history-panel h3 {
+    font-family: 'Cinzel', serif;
+    color: #2c1810;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #8b4513;
+    padding-bottom: 10px;
+}
+
+.save-settings-btn,
+.clear-history-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #8b4513, #a0522d);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.save-settings-btn:hover,
+.clear-history-btn:hover {
+    background: linear-gradient(135deg, #a0522d, #8b4513);
+}
+
+.history-item {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #d4c4a8;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-date {
+    font-size: 0.9rem;
+    color: #654321;
+}
+
+.history-total,
+.history-per-person {
+    font-weight: 600;
+    color: #2c1810;
+}
+
+.history-item button {
+    padding: 6px 12px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.history-item button:hover {
+    background: #218838;
+}
+
+.error-messages {
+    background: rgba(220, 53, 69, 0.1);
+    border: 2px solid #dc3545;
+    border-radius: 6px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.error-message {
+    color: #dc3545;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.error-message:last-child {
+    margin-bottom: 0;
+}
+
+.qr-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.qr-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    border: 3px solid #8b4513;
+}
+
+.qr-content h3 {
+    font-family: 'Cinzel', serif;
+    color: #2c1810;
+    margin-bottom: 20px;
+}
+
+.qr-content button {
+    padding: 10px 20px;
+    background: #8b4513;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.qr-content button:hover {
+    background: #a0522d;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .expense-form,
+    .results {
+        padding: 20px;
+    }
+    
+    .calculation-table td {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+    
+    .calculation-table .total-row td,
+    .calculation-table .per-person-row td {
+        font-size: 1.1rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .item-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        min-width: auto;
+    }
+    
+    .settings-panel,
+    .history-panel {
+        width: 95%;
+        max-width: none;
+        margin: 10px;
+    }
+}

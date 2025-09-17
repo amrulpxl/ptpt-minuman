@@ -1,0 +1,2 @@
+[16-Sep-2025 05:33:49 Europe/Berlin] Calculate API Input: {"items":[{"name":"Peler","price":500000,"quantity":5}],"tax_rate":20,"service_charge":5,"discount_rate":5,"tips_rate":7,"number_of_people":5,"rounding_mode":"up"}
+[16-Sep-2025 05:44:02 Europe/Berlin] Calculate API Input: {"items":[{"name":"Memek","price":750000,"quantity":5},{"name":"Tete","price":1500000,"quantity":5}],"tax_rate":20,"service_charge":12,"discount_rate":7,"tips_rate":15,"number_of_people":10,"rounding_mode":"up"}
